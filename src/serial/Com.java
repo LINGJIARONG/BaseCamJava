@@ -1,5 +1,6 @@
 package serial;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import com.fazecast.jSerialComm.SerialPort;
@@ -40,11 +41,14 @@ public class Com {
 			}
 		}
 		System.out.println("o " + o);
+		try {
 		comPort = SerialPort.getCommPorts()[o - 1];// to be regulated
 		comPort.openPort();
 		comPort.setBaudRate(115200);
 		comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);
-
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		//in = comPort.getInputStream();
 	}
 

@@ -99,7 +99,7 @@ public class Vue extends JFrame {
 	private JLabel[] P = new JLabel[3];
 	private JLabel[] I = new JLabel[3];
 	private JLabel[] D = new JLabel[3];
-
+	private GrapheThread thread ;
 	/*
 	 * Les puissances et les nombres de pôles de chaque axe
 	 */
@@ -133,8 +133,12 @@ public class Vue extends JFrame {
 		setLayout(new GridLayout());
 		dataControl = new JPanel();
 		dataDiagramme = new JPanel();// panel de presatation de dataDiagramme
-		GrapheThread thread = new GrapheThread(dataDiagramme);
-		thread.start();
+		try{
+			thread = new GrapheThread(dataDiagramme);
+			thread.start();}
+		catch(Exception e1) {
+			
+		}
 		// les choix des modes
 		String[] modeStrings = { "2.mode detumbling ", "1.control mode " };
 		JComboBox<String> modeList = new JComboBox<>(modeStrings);

@@ -24,6 +24,7 @@ public class GrapheThread extends Thread {
 	}
 	
 	public void run() {
+		
 		while (!stop) {
 			
 			System.out.println("this is a test!");
