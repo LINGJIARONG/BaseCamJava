@@ -15,18 +15,18 @@
 
 * Interface
 
-** Allows users to control gimbal by giving specific angles
+1.Allows users to control gimbal by giving specific angles
 
-** Allows users to calibrate Gimbal by giving PID and parameters , pole...
+2.Allows users to calibrate Gimbal by giving PID and parameters , pole...
 
-** Allows to be automatic ( without humain intervention), need to be specified which mode (using a database of commands/some formulas  )
+3. Allows to be automatic ( without humain intervention), need to be specified which mode (using a database of commands/some formulas  )
 
-** Need to be calibred
+4. Need to be calibred
 
 
          
 * RESULT 
     
-** Result will be plot and saved in src/result.txt for future usage.
+           Result will be plot and saved in src/result.txt for future usage.
 
 
