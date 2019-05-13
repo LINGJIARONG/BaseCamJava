@@ -26,6 +26,8 @@ public class Com {
 			instance = new Com();
 			System.out.println(instance);
 		}
+		System.out.println(instance);
+
 		return instance;
 	}
 

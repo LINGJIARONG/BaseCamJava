@@ -52,7 +52,7 @@ public class Vue extends JFrame {
 	 * Pour afficher les informations des trois axes
 	 */
 	JPanel[] axeInfo = new JPanel[3];
-	private int begin=0;
+	private int begin = 0;
 	/**
 	 * Pour afficher les trois angles des trois axes
 	 */
@@ -99,7 +99,7 @@ public class Vue extends JFrame {
 	private JLabel[] P = new JLabel[3];
 	private JLabel[] I = new JLabel[3];
 	private JLabel[] D = new JLabel[3];
-	private GrapheThread thread ;
+	private GrapheThread thread;
 	/*
 	 * Les puissances et les nombres de pôles de chaque axe
 	 */
@@ -133,12 +133,7 @@ public class Vue extends JFrame {
 		setLayout(new GridLayout());
 		dataControl = new JPanel();
 		dataDiagramme = new JPanel();// panel de presatation de dataDiagramme
-		try{
-			thread = new GrapheThread(dataDiagramme);
-			thread.start();}
-		catch(Exception e1) {
-			
-		}
+
 		// les choix des modes
 		String[] modeStrings = { "2.mode detumbling ", "1.control mode " };
 		JComboBox<String> modeList = new JComboBox<>(modeStrings);
@@ -274,15 +269,15 @@ public class Vue extends JFrame {
 			m.setP_Roll(Integer.parseInt(this.PValue[0].getText()));
 			m.setP_Pitch(Integer.parseInt(this.PValue[1].getText()));
 			m.setP_Yaw(Integer.parseInt(this.PValue[2].getText()));
-			
+
 			m.setI_Roll(Integer.parseInt(this.IValue[0].getText()));
 			m.setI_Pitch(Integer.parseInt(this.IValue[1].getText()));
 			m.setI_Yaw(Integer.parseInt(this.IValue[2].getText()));
-			
+
 			m.setD_Roll(Integer.parseInt(this.DValue[0].getText()));
 			m.setD_Pitch(Integer.parseInt(this.DValue[1].getText()));
 			m.setD_Yaw(Integer.parseInt(this.DValue[2].getText()));
-			
+
 			m.setPowerRoll(Integer.parseInt(this.PuissanceValue[0].getText()));
 			m.setPowerPitch(Integer.parseInt(this.PuissanceValue[1].getText()));
 			m.setPowerYaw(Integer.parseInt(this.PuissanceValue[2].getText()));
@@ -290,11 +285,11 @@ public class Vue extends JFrame {
 			m.setNbPoleRoll(Integer.parseInt(this.nbPoleValue[0].getText()));
 			m.setNbPolePitch(Integer.parseInt(this.nbPoleValue[1].getText()));
 			m.setNbPoleYaw(Integer.parseInt(this.nbPoleValue[2].getText()));
-			
+
 			try {
-				PidControl.controlPid(m.getP_Roll(), m.getI_Roll(), m.getD_Roll(),m.getPowerRoll(), m.getNbPoleRoll(),
-						m.getP_Pitch(), m.getI_Pitch(), m.getD_Pitch(),m.getPowerPitch(), m.getNbPolePitch(),
-						m.getP_Yaw(), m.getI_Yaw(), m.getD_Yaw(),m.getPowerYaw(), m.getNbPoleYaw());
+				PidControl.controlPid(m.getP_Roll(), m.getI_Roll(), m.getD_Roll(), m.getPowerRoll(), m.getNbPoleRoll(),
+						m.getP_Pitch(), m.getI_Pitch(), m.getD_Pitch(), m.getPowerPitch(), m.getNbPolePitch(),
+						m.getP_Yaw(), m.getI_Yaw(), m.getD_Yaw(), m.getPowerYaw(), m.getNbPoleYaw());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -306,17 +301,18 @@ public class Vue extends JFrame {
 
 		start.addActionListener(e -> {
 			new ReadFile();
-			for(int i=begin;i<Database.list.size()-1;i++) {
+			for (int i = begin; i < Database.list.size() - 1; i++) {
 				begin++;
-				long interval=(long) (Database.list.get(i+1).getTime()-Database.list.get(i).getTime());
+				long interval = (long) (Database.list.get(i + 1).getTime() - Database.list.get(i).getTime());
 				try {
-					Thread.sleep(interval*500);
+					Thread.sleep(interval * 500);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				try {
-					test.consigneSpeed(Database.list.get(i).getVx(), Database.list.get(i).getVy(), Database.list.get(i).getVz());
+					test.consigneSpeed(Database.list.get(i).getVx(), Database.list.get(i).getVy(),
+							Database.list.get(i).getVz());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -324,13 +320,15 @@ public class Vue extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
-		
+
 		connect.addActionListener(e -> {
 			try {
 				test.connect();
+				thread = new GrapheThread(dataDiagramme);
+				thread.start();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			} catch (InterruptedException e1) {
@@ -345,7 +343,7 @@ public class Vue extends JFrame {
 			try {
 				thread.cut();
 				test.disconnect();
-				System.exit(0);
+				//System.exit(0);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -385,8 +383,5 @@ public class Vue extends JFrame {
 		});
 
 	}
-
-
-
 
 }

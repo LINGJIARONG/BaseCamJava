@@ -42,6 +42,8 @@ public class GrapheThread extends Thread {
 				Thread.sleep(1000);
 
 				for(int j=0;j<5;j++) {
+					if(stop)
+						break;
 					data = Com.getInstance().sendCMD(API.CMD_REALTIME_DATA_3, API.noData);
 					System.out.println("data.length"+data.length);
 					for(int i=0;i<data.length;i++) {

@@ -52,7 +52,7 @@ public class test {
 
 	public static void disconnect() throws IOException, InterruptedException {
 		Com.getInstance().sendCMD(API.CMD_MOTORS_OFF, API.noData);
-		Com.getInstance().close();
+		//Com.getInstance().close();
 	}
 
 	public static void consigne() throws IOException, InterruptedException {
