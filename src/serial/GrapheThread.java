@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartPanel;
+
+import ult.Save_result;
 /**
  * A thread to draw a graphe 
  * 
@@ -53,6 +55,8 @@ public class GrapheThread extends Thread {
 						RollGyro[j]=API.convertTwoBytesToInt(data[6], data[7])*API.factor;
 						YawAcc[j]=API.convertTwoBytesToInt(data[8], data[9])/512*API.g;
 						YawGyro[j]=API.convertTwoBytesToInt(data[10], data[11])*API.factor;
+						Save_result.write_result(RollGyro[j], PitchGyro[j], YawGyro[j],
+								RollAcc[j], PitchAcc[j], YawGyro[j]);
 					}
 					Thread.sleep(100);
 				}
