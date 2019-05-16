@@ -19,14 +19,13 @@ public class Com {
 	//private InputStream in = null;
 
 	// SINGLETON IMPLEMENTION
-	public static Com instance = null;
+	private static Com instance = null;
 
 	public static Com getInstance() {
 		if (instance == null) {
 			instance = new Com();
 			System.out.println(instance);
 		}
-
 		return instance;
 	}
 
@@ -36,12 +35,11 @@ public class Com {
 	private Com() throws ArrayIndexOutOfBoundsException {
 		int o = 0;
 		for (int i = 0; i < SerialPort.getCommPorts().length; i++) {
-			System.out.println(SerialPort.getCommPorts()[i] + "" + i + ";");
 			if (SerialPort.getCommPorts()[i].toString().indexOf("USB") != -1) {
 				o = i;
 			}
 		}
-		System.out.println("o " + o);
+		//System.out.println("o " + o);
 		try {
 		comPort = SerialPort.getCommPorts()[o - 1];// to be regulated
 		comPort.openPort();

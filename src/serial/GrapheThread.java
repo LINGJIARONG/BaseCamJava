@@ -14,7 +14,7 @@ import ult.Save_result;
  *
  */
 public class GrapheThread extends Thread {
-	volatile boolean  stop=false;
+	volatile boolean stop=false;
 	public static Com com = Com.getInstance();
 	private JPanel dataDiagramme;
 
@@ -24,12 +24,9 @@ public class GrapheThread extends Thread {
 	public void cut() {
 		stop=true;
 	}
-	
 	public void run() {
-		
-		while (!stop) {
-			
-			System.out.println("this is a test!");
+		while (!stop) {	
+			//System.out.println("this is a test!");
 			Double [] RollGyro=new Double[5];
 			Double [] PitchGyro=new Double[5];
 			Double [] YawGyro=new Double[5];

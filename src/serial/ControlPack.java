@@ -80,14 +80,16 @@ public class ControlPack {
 		this.pack = pack;
 		return pack;
 	}
-/**
- * send to the system
- * 
- * @throws IOException
- * @throws InterruptedException
- */
+	/**
+	 * send to the system
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	public void send() throws IOException, InterruptedException {
-		Com.getInstance().sendCMD(API.CMD_CONTROL, this.pack);
+		synchronized (this) {
+			Com.getInstance().sendCMD(API.CMD_CONTROL, this.pack);
+		}
 	}
 
 	/**
